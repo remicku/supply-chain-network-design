@@ -1,7 +1,9 @@
 [project]
-name = "ppc"
+name = "supply-chain-network-design"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "ortools>=9.15.6755",
+]
