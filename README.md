@@ -1,34 +1,32 @@
-# B2 — Supply Chain Network Design
+# Supply Chain Network Design
 
-Rémi Brenaut, Edouard André, Quentin Lauret — SCIA 2027
+## Problem
 
-## Problème
+The CFLP (Capacitated Facility Location Problem) consists of choosing which
+warehouses to open among a set of candidates and assigning each customer to an
+open warehouse, minimizing fixed opening costs and transport costs under
+capacity constraints.
 
-Le CFLP (Capacitated Facility Location Problem) consiste à choisir quels entrepôts
-ouvrir parmi un ensemble de candidats et à affecter chaque client à un entrepôt ouvert,
-en minimisant les coûts fixes d'ouverture et les coûts de transport sous des contraintes
-de capacité.
+## Implemented approaches
 
-## Approches implémentées
-
-| Méthode | Type | Description |
+| Method | Type | Description |
 |---|---|---|
-| CP-SAT | Exacte | Modélisation par contraintes via OR-Tools |
-| PLNE | Exacte | Programmation linéaire en nombres entiers via PuLP (CBC) |
-| GRASP | Métaheuristique | Construction gloutonne randomisée + recherche locale |
-| ALNS | Métaheuristique | Destruction/réparation adaptative + Simulated Annealing |
+| CP-SAT | Exact | Constraint programming model via OR-Tools |
+| MILP | Exact | Mixed-integer linear programming via PuLP (CBC) |
+| GRASP | Metaheuristic | Greedy randomized construction + local search |
+| ALNS | Metaheuristic | Adaptive destroy/repair + Simulated Annealing |
 
 ## Extensions
 
-- **Robustesse** : modèle worst-case pour la demande incertaine (paramètre `uncertainty`)
-- **Durabilité** : choix diesel/électrique avec budget CO₂ configurable
+- **Robustness**: worst-case model for uncertain demand (`uncertainty` parameter)
+- **Sustainability**: diesel/electric choice with a configurable CO₂ budget
 
-## Données
+## Data
 
-Instances CAP de l'OR-Library de Beasley (1988) :
+CAP instances from Beasley's OR-Library (1988):
 `data/cap71.txt`, `data/cap101.txt`, `data/cap131.txt`, `data/cap134.txt`, `data/capopt.txt`
 
-Source : http://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html
+Source: http://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html
 
 ## Installation
 
@@ -36,21 +34,21 @@ Source : http://people.brunel.ac.uk/~mastjjb/jeb/orlib/capinfo.html
 uv sync
 ```
 
-## Utilisation
+## Usage
 
-Ouvrir et exécuter `project.ipynb` dans l'ordre des cellules.
+Open `project.ipynb` and run the cells in order.
 
-## Résultats principaux (cap134, 50 entrepôts, 50 clients)
+## Main results (cap134, 50 warehouses, 50 customers)
 
-| Méthode | Coût | Gap | Temps |
+| Method | Cost | Gap | Time |
 |---|---|---|---|
-| CP-SAT | 928 941.67 | 0.000% | ~0.1s |
-| PLNE | 928 941.75 | 0.000% | ~0.15s |
-| GRASP | 928 941.75 | 0.000% | ~3s |
-| ALNS | 945 438.08 | 1.776% | ~2s |
+| CP-SAT | 928,941.67 | 0.000% | ~0.1s |
+| MILP | 928,941.75 | 0.000% | ~0.15s |
+| GRASP | 928,941.75 | 0.000% | ~3s |
+| ALNS | 945,438.08 | 1.776% | ~2s |
 
-## Références
+## References
 
 - Beasley, J.E. (1988). OR-Library. Brunel University.
 - Melo et al. (2009). Facility Location and Supply Chain Management. EJOR.
-- ADEME (2022). Facteurs d'émission transport.
+- ADEME (2022). Transport emission factors.
